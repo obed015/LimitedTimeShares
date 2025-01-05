@@ -1,0 +1,42 @@
+﻿@model SecureFileUpload.Models.FileUploadModel
+
+@{
+    ViewData["Title"] = "Upload File";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Upload File</h3>
+                </div>U
+                <div class="card-body">
+                    <form asp-controller="File" asp-action="Upload" enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <label asp-for="File">Select File</label>
+                            <input asp-for="File" class="form-control-file" type="file" />
+                            <span asp-validation-for="File" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label asp-for="ExpiryHours">Link Expiry (Hours)</label>
+                            <input asp-for="ExpiryHours" class="form-control" type="number" min="1" max="168" />
+                            <span asp-validation-for="ExpiryHours" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

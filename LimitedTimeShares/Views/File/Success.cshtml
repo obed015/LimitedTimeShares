@@ -1,0 +1,36 @@
+﻿@model string
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center text-success">File Uploaded Successfully!</h3>
+                </div>
+                <div class="card-body">
+                    <p class="text-center">Your shareable link (valid for the specified duration):</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="@Model" readonly id="shareLink">
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyLink()">Copy</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a asp-action="Upload" class="btn btn-primary">Upload Another File</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function copyLink() {
+            const linkInput = document.getElementById('shareLink');
+            navigator.clipboard.writeText(linkInput.value).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy the link.');
+            });
+        }
+    </script>
+}
